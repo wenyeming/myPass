@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .tb{border:1px solid #ccc;border-collapse:collapse;width:300px; float:left;}
+        .td1{text-align:right;width:100px;height:50px;border:1px solid #ccc;}
+        .td2{text-align:left;height:50px;border:1px solid #ccc;padding-left:5px;}
+        .td2 input{width:120px;height:20px;}
+
+        .td3{text-align:center;width:200px;height:50px;border:1px solid #ccc;position:relative;}
+        .td3 input{width:80px;height:30px;position:absolute;left:110px;top:10px;cursor:pointer;}
+
+        .td4{text-align:center;width:200px;height:50px;border:1px solid #ccc;position:relative;}
+        .td4 input{width:80px;height:30px;position:absolute;top:10px;cursor:pointer;}
+
+        .td5{height:50px;position:relative;}
+        .td5 label{height:20px;position:absolute;top:15px;}
+        .td5 input[type=checkbox]{width:20px;height:20px;position:absolute;top:14px;}
+
+        .list{width:905px;height:634px;border: 1px solid #ccc;float:left;margin-left:10px;}
+        .item{width:100px;height:30px;line-height:30px;text-align:center; border:1px solid #ccc;margin:10px 0px 0px 10px; float:left;cursor:pointer;}
+        .item:hover{background-color:#0094ff;}
+    </style>
+    <title>我的密码本</title>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/myPass.js"></script>
+</head>
+<body>
+    <table class="tb">
+        <tr>
+            <td class="td1">输入秘钥：</td> 
+            <td class="td2"> <input type="password" id="openKey"  /></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="td3">
+                <input type="button" value="打开">
+                <input type="file" id="files" onchange="fileImport();" style="filter:alpha(opacity:0);opacity:0;">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="td1">输入秘钥：</td>
+            <td class="td2"> <input type="password" id="saveKey"  /></td>
+        </tr>
+        <tr>
+            <td class="td1">再输一次：</td>
+            <td class="td2"> <input type="password" id="againKey" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="td3">
+                <input type="button" onclick="fileSave();" value="保存" >
+            </td>
+        </tr>
+
+        <tr>
+            <td class="td1">应用名称：</td>
+            <td class="td2"> <input type="text" id="name" /></td>
+        </tr>
+
+        <tr>
+            <td class="td1">登录账号：</td>
+            <td class="td2"> <input type="text" id="login" /></td>
+        </tr>
+
+        <tr>
+            <td class="td1">账号密码：</td>
+            <td class="td2"> <input type="text" id="pass" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="td4">
+                <input type="button" style="left:60px;" onclick="saveData();" value="确定" >
+                <input type="button" style="left:160px;" onclick="delData();" value="删除">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="td5">
+                <label style="left:15px;">数字</label>
+                <input style="left:45px;" type="checkbox" checked id="number" />
+                <label style="left:85px;">小写</label>
+                <input style="left:115px;" type="checkbox" checked id="lower" />
+                <label style="left:155px;">大写</label>
+                <input style="left:185px;" type="checkbox" id="upper" />
+                <label style="left:225px;">特殊</label>
+                <input style="left:255px;" type="checkbox" id="special" />
+            </td>
+        </tr>
+        <tr>
+            <td class="td1">设定长度：</td>
+            <td class="td2"> <input type="text" id="passLen" value="8" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="td3">
+                <input type="button" onclick="createPass();" value="生成密码">
+            </td>
+        </tr>
+    </table>
+    <div class="list"></div>  
+</body>
+</html>
